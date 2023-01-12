@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('sale_table', function (Blueprint $table) {
-            //
+        Schema::create('menu_sale', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('menu_id')->unsigned();
             $table->bigInteger('sale_id')->unsigned();
-            $table->bigInteger('table_id')->unsigned();
+            $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
             $table->foreign('sale_id')->references('id')->on('sales')->onDelete('cascade');
-            $table->foreign('table_id')->references('id')->on('tables')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -30,9 +30,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('sale_table', function (Blueprint $table) {
-            //
-            $table->dropColumn(['sale_id','table_id']);
-        });
+        Schema::dropIfExists('menu_sale');
+        $table->dropColumn(['menu_id','sale_id']);
     }
 };

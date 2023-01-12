@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text("description");
             $table->decimal("price", 8 ,2);
             $table->string("image");
-            $table->bigIntiger("category_id")->unsigned();
+            $table->bigInteger("category_id")->unsigned();
             $table->timestamps();
             //if we delete a categry we delete her menu the work of (cascade)
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
