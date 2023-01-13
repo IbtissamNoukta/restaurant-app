@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    //user do nt see the cathegory if isn't connected
+    //user do nt see the category if isn't connected
     public function __construct(){
         $this->middleware('auth');
     }
@@ -55,7 +55,7 @@ class CategoryController extends Controller
             "slug" => Str::slug($title)
         ]);
         //redirect user
-        return redirect()->route("categories.index", ["success" => "categories added with success"]);
+        return redirect()->route("category.index")->with(["success" => "categories added with success"]);
        // return redirect()->route("categories.index")->with(["success" => "categories added success"]);
 
     }
@@ -100,12 +100,12 @@ class CategoryController extends Controller
            $this->validate($request, ["title"=>"required|min:3"]);
            //store data
            $title = $request->title;
-           Category::update([
+           $category->update([
                "title" => $title,
                "slug" => Str::slug($title)
            ]);
            //redirect user
-           return redirect()->route("categories.index", ["success" => "categories updated with success"]);
+           return redirect()->route("category.index", ["success" => "categories updated with success"]);
     }
 
     /**
@@ -117,8 +117,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //delete category
-        CategoryDB::delete();
+        $category->delete();
         //redirect user
-        return redirect()->route("categories.index", ["success" => "categories deleted with success"]);
+        return redirect()->route("category.index", ["success" => "categories deleted with success"]);
     }
 }

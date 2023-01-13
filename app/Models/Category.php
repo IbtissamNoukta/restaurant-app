@@ -10,6 +10,10 @@ class Category extends Model
     use HasFactory;
     protected $fillable = ['title','slug'];
 
+    //use slug instead id for expl in seach
+    public function getRouteKeyName(){
+        return "slug";
+    }
     /**
      * Get all of the menus for the Category
      *

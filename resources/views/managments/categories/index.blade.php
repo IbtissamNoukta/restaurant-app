@@ -30,20 +30,30 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($categories as $category)
+                                        <tr>
                                             <td>
                                                 {{ $category->id }}
                                             </td>
                                             <td>
                                                 {{ $category->title }}
                                             </td>
-                                            <td>
-                                                {{ $category->action }}
-                                            </td>
-                                            <td>
+                                            <td class="d-flex flex-row justify-content-center align-items-center">
                                                 <a href="{{ route("category.edit",$category->slug) }}" class="btn btn-warning">
-                                                    <i class="fas fa-edit fa-x2"></i>
+                                                    <i class="fas fa-edit"></i>
                                                 </a>
+                                                <form  id="{{ $category->id }}" action="{{ route("category.destroy",$category->slug) }}" method="post">
+                                                    @csrf
+                                                    @method("DELETE")
+                                                    <button onclick="
+                                                        event.preventDefault();
+                                                        if(confirm('are u sur u wanna delete the {{ $category->title }} category? '))
+                                                        document.getElementById({{ $category->id }}).submit();"
+                                                        class="btn btn-danger">
+                                                            <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
