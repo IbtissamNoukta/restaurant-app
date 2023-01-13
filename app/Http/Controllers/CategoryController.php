@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Str;
+
 
 class CategoryController extends Controller
 {
+    //user do nt see the cathegory if isn't connected
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        //all the categories
+        return view('managments.categories.index', [
+            'categories' => Category::paginate(5)
+        ]);
     }
 
     /**
@@ -26,6 +35,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view('managments.categories.create');
     }
 
     /**
@@ -36,7 +46,18 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        //validation
+        $this->validate($request, ["title"=>"required|min:3"]);
+        //store data
+        $title = $request->title;
+        Category::create([
+            "title" => $title,
+            "slug" => Str::slug($title)
+        ]);
+        //redirect user
+        return redirect()->route("categories.index", ["success" => "categories added with success"]);
+       // return redirect()->route("categories.index")->with(["success" => "categories added success"]);
+
     }
 
     /**
@@ -59,6 +80,10 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
+        return view("managments.categories.edit", ["category" => $category]);
+        {
+
+        }
     }
 
     /**
@@ -70,7 +95,17 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        //update category
+           //validation
+           $this->validate($request, ["title"=>"required|min:3"]);
+           //store data
+           $title = $request->title;
+           Category::update([
+               "title" => $title,
+               "slug" => Str::slug($title)
+           ]);
+           //redirect user
+           return redirect()->route("categories.index", ["success" => "categories updated with success"]);
     }
 
     /**
@@ -81,6 +116,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        //delete category
+        CategoryDB::delete();
+        //redirect user
+        return redirect()->route("categories.index", ["success" => "categories deleted with success"]);
     }
 }
