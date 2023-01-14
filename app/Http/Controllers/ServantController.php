@@ -8,6 +8,10 @@ use App\Http\Requests\UpdateServantRequest;
 
 class ServantController extends Controller
 {
+    //user do nt see the category if isn't connected
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,10 @@ class ServantController extends Controller
      */
     public function index()
     {
-        //
+        //all the categories
+        return view('managments.servers.index', [
+            'servants' => Servant::paginate(5)
+        ]);
     }
 
     /**
@@ -26,6 +33,8 @@ class ServantController extends Controller
     public function create()
     {
         //
+        return view('managments.servers.create');
+
     }
 
     /**
@@ -36,7 +45,19 @@ class ServantController extends Controller
      */
     public function store(StoreServantRequest $request)
     {
-        //
+        //validation
+        $this->validate($request, [
+            "name"=>"required|min:3"
+        ]);
+        //store data
+        Servant::create([
+            "name" => $request->name,
+            "adress" => $request->adress
+        ]);
+        //redirect user
+        return redirect()->route("servant.index")->with(["success" => "servant added with success"]);
+       // return redirect()->route("categories.index")->with(["success" => "categories added success"]);
+
     }
 
     /**
@@ -59,6 +80,8 @@ class ServantController extends Controller
     public function edit(Servant $servant)
     {
         //
+        return view("managments.servers.edit", ["servant" => $servant]);
+
     }
 
     /**
@@ -70,7 +93,18 @@ class ServantController extends Controller
      */
     public function update(UpdateServantRequest $request, Servant $servant)
     {
-        //
+        //update category
+           //validation
+           $this->validate($request, [
+            "name"=>"required|min:3"
+        ]);
+           //store data
+           $servant->update([
+               "name" => $request->name,
+               "adress" => $request->adress
+           ]);
+           //redirect user
+           return redirect()->route("servant.index")->with(["success" => "servant updated with success"]);
     }
 
     /**
@@ -82,5 +116,9 @@ class ServantController extends Controller
     public function destroy(Servant $servant)
     {
         //
+           //delete category
+           $servant->delete();
+           //redirect user
+           return redirect()->route("servant.index")->with(["success" => "servant deleted with success"]);
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\ServantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +34,6 @@ Route::middleware('auth')->group(function () {
 //Auth::routes(["register" => false, "reset" => false]);
 Route::resource('category', CategoryController::class);
 Route::resource('table', TableController::class);
+Route::resource('servant', ServantController::class);
 
 require __DIR__.'/auth.php';
