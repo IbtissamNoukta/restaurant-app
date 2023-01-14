@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,6 @@ Route::middleware('auth')->group(function () {
 //register or new password take off
 //Auth::routes(["register" => false, "reset" => false]);
 Route::resource('category', CategoryController::class);
+Route::resource('table', TableController::class);
 
 require __DIR__.'/auth.php';

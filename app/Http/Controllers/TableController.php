@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Table;
 use App\Http\Requests\StoreTableRequest;
 use App\Http\Requests\UpdateTableRequest;
+use Illuminate\Support\Str;
 
 class TableController extends Controller
 {
+    //user do nt see the category if isn't connected
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +21,10 @@ class TableController extends Controller
     public function index()
     {
         //
+        //all the tables
+        return view('managments.tables.index', [
+            'tables' => Table::paginate(5)
+        ]);
     }
 
     /**
@@ -26,6 +35,8 @@ class TableController extends Controller
     public function create()
     {
         //
+        return view('managments.tables.create');
+
     }
 
     /**
@@ -36,7 +47,22 @@ class TableController extends Controller
      */
     public function store(StoreTableRequest $request)
     {
-        //
+        //validation
+        $this->validate($request, [
+            "name"=>"required|unique:tables,name",
+            "status"=>"required|boolean"
+        ]);
+                //store data
+        $name = $request->name;
+        Table::create([
+            "name" => $name,
+            "slug" => Str::slug($name),
+            "status" => $request->status
+        ]);
+        //redirect user
+        return redirect()->route("table.index")->with(["success" => "tables added with success"]);
+       // return redirect()->route("categories.index")->with(["success" => "categories added success"]);
+
     }
 
     /**
@@ -59,6 +85,8 @@ class TableController extends Controller
     public function edit(Table $table)
     {
         //
+        return view("managments.tables.edit", ["table" => $table]);
+
     }
 
     /**
@@ -70,7 +98,21 @@ class TableController extends Controller
      */
     public function update(UpdateTableRequest $request, Table $table)
     {
-        //
+         //update category
+           //validation
+           $this->validate($request, [
+                "name"=>"required|unique:tables,name,".$table->id,
+                "status"=>"required|boolean"
+            ]);
+           //store data
+           $name = $request->name;
+           $table->update([
+               "name" => $name,
+               "slug" => Str::slug($name),
+               "status" => $request->status
+           ]);
+           //redirect user
+           return redirect()->route("table.index")->with(["success" => "tables updated with success"]);
     }
 
     /**
@@ -81,6 +123,10 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
-        //
+           //delete category
+           $table->delete();
+           //redirect user
+           return redirect()->route("table.index")->with(["success" => "tables deleted with success"]);
+
     }
 }

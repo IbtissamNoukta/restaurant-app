@@ -81,9 +81,7 @@ class CategoryController extends Controller
     {
         //
         return view("managments.categories.edit", ["category" => $category]);
-        {
 
-        }
     }
 
     /**
@@ -105,7 +103,7 @@ class CategoryController extends Controller
                "slug" => Str::slug($title)
            ]);
            //redirect user
-           return redirect()->route("category.index", ["success" => "categories updated with success"]);
+           return redirect()->route("category.index")->with(["success" => "categories updated with success"]);
     }
 
     /**
@@ -119,6 +117,6 @@ class CategoryController extends Controller
         //delete category
         $category->delete();
         //redirect user
-        return redirect()->route("category.index", ["success" => "categories deleted with success"]);
+        return redirect()->route("category.index")->with(["success" => "categories deleted with success"]);
     }
 }
