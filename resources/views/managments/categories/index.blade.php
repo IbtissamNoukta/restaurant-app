@@ -8,13 +8,14 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                sidebar
+                                @include("layouts.sidebar")
                             </div>
                             <div class="col-md-8">
                                 {{-- d-flex flex-row justify-content-center align-items-between border-buttom pd-1 --}}
                                 <div class="d-flex justify-content-between border-bottom border-2">
                                     <h3 class="text-secondary">
-                                        <i class="fa-sharp fa-solid fa-list"> Categories</i>
+                                        <i class="fa-sharp fa-solid fa-list"></i>
+                                        Categories
                                     </h3>
                                     <a href="{{ route("category.create") }}" class="btn btn-primary">
                                         <i class="fas fa-plus fa-x2"></i>
@@ -58,7 +59,7 @@
                                     </tbody>
                                 </table>
                                 <div class="my-3 d-flex justify-content-center align-items-center">
-                                    {{ $tables->links() }}
+                                    {{ $categories->links() }}
                                 </div>
                             </div>
                         </div>
