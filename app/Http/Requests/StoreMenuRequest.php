@@ -13,7 +13,7 @@ class StoreMenuRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class StoreMenuRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "title"=>"required|min:3|unique:menus,title",
+            "description"=>"required|min:5",
+            "price"=>"required|numeric",
+            "image"=>"required|mimes:png,jpg,jpeg|max:2048",
+            "category_id"=>"required|numeric"
         ];
     }
 }

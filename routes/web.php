@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ServantController;
+use App\Http\Controllers\MenuController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +37,6 @@ Route::middleware('auth')->group(function () {
 Route::resource('category', CategoryController::class);
 Route::resource('table', TableController::class);
 Route::resource('servant', ServantController::class);
+Route::resource('menu', MenuController::class);
 
 require __DIR__.'/auth.php';
