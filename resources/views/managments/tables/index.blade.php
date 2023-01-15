@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                @include("layouts.sidebar")
+                                @include('layouts.sidebar')
                             </div>
                             <div class="col-md-8">
                                 {{-- d-flex flex-row justify-content-center align-items-between border-buttom pd-1 --}}

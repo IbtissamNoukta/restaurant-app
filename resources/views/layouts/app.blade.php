@@ -28,6 +28,7 @@
             <!-- Page Content -->
             <main>
                 {{-- {{ $slot }} --}}
+                @include('layouts.alert')
                 @yield('content')
 
             </main>
