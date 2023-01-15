@@ -20,7 +20,7 @@
                                         <input type="text" name="name" id="name" class="form-control" placeholder="Name">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="adress" name="adress" id="name" class="form-control" placeholder="Adress">
+                                        <input type="adress" name="adress" id="adress" class="form-control" placeholder="Adress">
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-primary">validate</button>

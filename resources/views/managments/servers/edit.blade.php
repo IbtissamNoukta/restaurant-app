@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="form-group mb-3">
                                         <input type="adress" name="adress" id="adress" class="form-control"
-                                         placeholder="Name" value="{{ $servant->adress }}">
+                                         placeholder="Adress" value="{{ $servant->adress }}">
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-primary">validate</button>

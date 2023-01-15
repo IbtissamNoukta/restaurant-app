@@ -9,6 +9,12 @@ class Menu extends Model
 {
     use HasFactory;
     protected $fillable = ['title','slug', 'description', 'image', 'price', 'category_id'];
+
+        //use slug instead id for expl in seach
+        public function getRouteKeyName(){
+            return "slug";
+        }
+
         /**
          * Get the category that owns the Menu
          *
@@ -17,10 +23,6 @@ class Menu extends Model
         public function category(): BelongsTo
         {
             return $this->belongsTo(Category::class);
-        }
-        //use slug instead id for expl in seach
-        public function getRouteKeyName(){
-            return "slug";
         }
 
         /**
