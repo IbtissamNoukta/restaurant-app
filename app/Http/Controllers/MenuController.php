@@ -157,9 +157,9 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         // //delete image
-        // if(file_exists(public_path("images/menus/").$menu->image)){
-        //     unlink(public_path("images/menus/").$menu->image);
-        // }
+        if(file_exists(public_path("images/menus/").$menu->image)){
+            unlink(public_path("images/menus/").$menu->image);
+        }
         //delete category
         $menu->delete();
         //redirect user

@@ -56,7 +56,7 @@
                                                 {{  $menu->category->title  }}
                                             </td>
                                             <td class="flex-row align-items-center">
-                                                <a href="{{ route("menu.edit",$menu->id) }}" class="btn btn-warning">
+                                                <a href="{{ route("menu.edit",$menu->slug) }}" class="btn btn-warning">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <form  id="{{ $menu->id }}" action="{{ route("menu.destroy",$menu->slug) }}" method="post">
