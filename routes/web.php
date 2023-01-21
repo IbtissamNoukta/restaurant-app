@@ -6,6 +6,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ServantController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\PaymentController;
 
 
 /*
@@ -38,5 +40,8 @@ Route::resource('category', CategoryController::class);
 Route::resource('table', TableController::class);
 Route::resource('servant', ServantController::class);
 Route::resource('menu', MenuController::class);
+Route::resource('sale', SaleController::class);
+Route::get('payment', [PaymentController::class, 'index']);
+
 
 require __DIR__.'/auth.php';
