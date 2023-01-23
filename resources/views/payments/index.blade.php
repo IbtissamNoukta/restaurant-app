@@ -89,13 +89,13 @@
                                                 list-group-item-action">
                                                     <div class="align-self-end">
                                                         <input type="checkbox" name='menu_id[]'
-                                                        id="menu" value="{{ $menu->id }}">
+                                                        id="menu_{{ $menu->id }}" value="{{ $menu->id }}" onclick="myFunction({{ $menu->id }})">
                                                     </div>
                                                     <img src="{{ asset('images/menus/'. $menu->image) }}" alt="{{ $menu->title }}"
                                                     class="img-fluid rounded" width="100" height="100">
                                                     <h5 class="font-weight-bold mt-2">{{ $menu->title }}</h5>
                                                     <h5 id="menu_price" class="text-muted">{{ $menu->price }} DH</h5>
-                                                    <input type="number" name="quantity" id="quantity" class="form-control" placeholder="quantity">
+                                                    <input style="display:none" type="number" name="quantity[{{ $menu->id }}]" id="quantity_{{ $menu->id }}" class="form-control" placeholder="quantity">
                                             </div>
                                         </div>
                                      </div>
@@ -104,12 +104,12 @@
                         @endforeach
                     </div>
                     <div class="form-group mb-3">
-                        <select name="category_id" id="category_id" class="form-control">
+                        <select name="servant_id" id="servant_id" class="form-control">
                             <option value="" selected disabled>
                                 Choose a servant
                             </option>
                             @foreach ($servants as $servant)
-                                <option value="{{ $servant->id }}">{{ $servant->name }}</option>
+                                <option name="servant_id" id="servant_id" value="{{ $servant->id }}">{{ $servant->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -117,7 +117,7 @@
                         <input type="number" name="total_price" id="total_price" class="form-control" placeholder="total_price">
                     </div>
                     <div class="form-group mb-3">
-                        <input type="number" name="total_recieved" id="total_recieved" class="form-control" placeholder="total_recieved">
+                        <input type="number" name="total_received" id="total_received" class="form-control" placeholder="total_received">
                     </div>
                     <div class="form-group mb-3">
                         <input type="number" name="change" id="change" class="form-control" placeholder="change">
@@ -150,11 +150,34 @@
         </form>
     </div>
 @endsection
+<script>
+    function myFunction(id) {
+  // Get the checkbox
+  var checkboxes = document.getElementById("menu_"+id);
+    // Get the output text
+  var text = document.getElementById("quantity_"+id);
+
+    // If the checkbox is checked, display the output text
+    if (checkboxes.checked == true){
+    text.style.display = "block";
+    text.value="1";
+    } else {
+    text.style.display = "none";
+    text.value="null";
+    }
+}
+
+</script>
 {{-- <script>
     function totalPrice(){
         var input1 = (document.getElementById("menu_price").value)*(document.getElementById("quantity").value) ;
         document.getElementById("total_price").value = input1;
 }
+$(function(){
+	$('#total_recieved').change(function(){
+		$('.form-control:not(#total_recieved)').prop('placeholder',this.value)
+	});
+});
 function change(){
         var input1 = (document.getElementById("total_recieved").value)-(document.getElementById("total_price").value) ;
         document.getElementById("change").value = input1;
