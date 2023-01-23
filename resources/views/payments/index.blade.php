@@ -53,6 +53,51 @@
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </div>
+                                            <hr>
+                                            @foreach ($table->sales as $sale)
+                                                @if ($sale->created_at >= Carbon\Carbon::today())
+                                                    <div style="border: dashed pink" class="mb-2 mt-2 shadow w-100" id="{{ $sale->id }}">
+                                                        <div class="card">
+                                                            <div class="card-body d-flex flex-column justify-content-center
+                                                                align-items-center">
+                                                                @foreach ($sale->menus()->where("sale_id",$sale->id)->get() as $menu)
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    {{ $menu->title }}
+                                                                </h5>
+                                                                <span class="text-muted">{{ $menu->pivot->quantity }} X {{ $menu->price }} DH</span>
+                                                                @endforeach
+
+
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span class="badge bg-danger"> Server : {{ $sale->servant->name }}</span>
+                                                                </h5>
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span> Total : {{ $sale->total_price }} DH</span>
+                                                                </h5>
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span> Received : {{ $sale->total_received }} DH</span>
+                                                                </h5>
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span> Change : {{ $sale->change}} DH</span>
+                                                                </h5>
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span class="badge text-bg-light"> Payment type: : {{ $sale->payment_type }}</span>
+                                                                </h5>
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span class="badge text-bg-light"> Payment status: : {{ $sale->payment_status }}</span>
+                                                                </h5>
+                                                                <hr>
+                                                                <span class="front-weight-bold">Restaurant XXX</span>
+                                                                <span class="text-muted">01 23 45 67 89</span>
+                                                                <span class="text-muted">Safi Qu XX Rue 100</span>
+                                                                <span class="text-muted">{{ Str::substr($sale->created_at, 11, 19) }}</span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
                                 @endforeach

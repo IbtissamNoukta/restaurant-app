@@ -22,6 +22,6 @@ class Table extends Model
      */
     public function sales(): BelongsToMany
     {
-        return $this->belongsToMany(Sales::class);
+        return $this->belongsToMany(Sale::class);
     }
 }
