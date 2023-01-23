@@ -91,7 +91,9 @@
                                                                 <span class="text-muted">01 23 45 67 89</span>
                                                                 <span class="text-muted">Safi Qu XX Rue 100</span>
                                                                 <span class="text-muted">{{ Str::substr($sale->created_at, 11, 19) }}</span>
-
+                                                                <a href="{{ route("sale.edit", $sale->id) }}" class="btn btn-sm btn-warning">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
