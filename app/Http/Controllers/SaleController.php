@@ -37,6 +37,35 @@ class SaleController extends Controller
     public function store(StoreSaleRequest $request)
     {
         //
+        // Sale::create([
+        //     "servant_id" => $request->price,
+        //     "total_price" => $request->price,
+        //     "total_received" => $request->price,
+        //     "change" => $request->price,
+        //     "payment_type" => $request->price,
+        //     "payment_status"=> $request->price
+        // ]);
+        //store data
+        //dd($request->all());
+        $sale= new Sale();
+        $sale->servant_id = $request->servant_id;
+        $sale->total_price = $request->total_price;
+        $sale->total_received = $request->total_received;
+        $sale->change = $request->change;
+        $sale->payment_type = $request->payment_type;
+        $sale->payment_status = $request->payment_status;
+        $sale->save();
+        $sale->menus()->sync($request->menu_id);
+        $quantity=$request->quantity;
+        //add for each menu of each sale a quantity
+        //$request->menu_id and $request->quantity are tables
+        //the $quantity[id] is the menu_id
+        foreach($request->menu_id as $id){
+           $sale->menus()->sync([$id => [ 'quantity' => $quantity[$id]] ], false);
+        }
+        $sale->tables()->sync($request->table_id);
+        //redirect user
+        return redirect()->back()->with(["success" => "paiyment added with success"]);
     }
 
     /**

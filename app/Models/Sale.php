@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Sale extends Model
 {
     use HasFactory;
-    protected $fillable = ['servant_id','quantity', 'total_price',
+    protected $fillable = ['servant_id', 'total_price',
      'total_recieved', 'change', 'payment_type','payment_status'];
 
     /**
@@ -21,7 +21,7 @@ class Sale extends Model
      */
     public function menus(): BelongsToMany
     {
-        return $this->belongsToMany(Menu::class);
+        return $this->belongsToMany(Menu::class)->withPivot(['quantity']);
     }
 
     /**
