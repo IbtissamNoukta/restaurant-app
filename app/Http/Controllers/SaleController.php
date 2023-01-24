@@ -11,6 +11,10 @@ use App\Http\Requests\UpdateSaleRequest;
 
 class SaleController extends Controller
 {
+    //user do nt see the category if isn't connected
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +23,10 @@ class SaleController extends Controller
     public function index()
     {
         //
+        $sales = Sale::orderBy("created_at","DESC")->pagination(10);
+        return view("sales.index")->with([
+            "sales" => $sales
+        ]);
     }
 
     /**
@@ -144,5 +152,7 @@ class SaleController extends Controller
     public function destroy(Sale $sale)
     {
         //
+        $sale->delete();
+        //the other tables also deleted cuz we used onDelete('cascade') in the (migration)
     }
 }
