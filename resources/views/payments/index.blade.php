@@ -91,9 +91,14 @@
                                                                 <span class="text-muted">01 23 45 67 89</span>
                                                                 <span class="text-muted">Safi Qu XX Rue 100</span>
                                                                 <span class="text-muted">{{ Str::substr($sale->created_at, 11, 19) }}</span>
-                                                                <a href="{{ route("sale.edit", $sale->id) }}" class="btn btn-sm btn-warning">
-                                                                    <i class="fa fa-edit"></i>
-                                                                </a>
+                                                                <div class="mt-2 d-flex justify-content-center">
+                                                                    <a href="{{ route("sale.edit", $sale->id) }}" class="btn btn-sm btn-warning mr-2">
+                                                                        <i class="fa fa-edit"></i>
+                                                                    </a>
+                                                                    <a href="#" target="_blank" onclick="print({{ $sale->id }})" class="btn btn-sm btn-primary">
+                                                                        <i class="fas fa-print"></i>
+                                                                    </a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -197,24 +202,33 @@
         </form>
     </div>
 @endsection
+@section('javascript')
 <script>
     function myFunction(id) {
-  // Get the checkbox
-  var checkboxes = document.getElementById("menu_"+id);
-    // Get the output text
-  var text = document.getElementById("quantity_"+id);
+        // Get the checkbox
+        var checkboxes = document.getElementById("menu_"+id);
+            // Get the output text
+        var text = document.getElementById("quantity_"+id);
 
     // If the checkbox is checked, display the output text
-    if (checkboxes.checked == true){
-    text.style.display = "block";
-    text.value="1";
-    } else {
-    text.style.display = "none";
-    text.value="null";
+        if (checkboxes.checked == true){
+            text.style.display = "block";
+            text.value="1";
+        } else {
+            text.style.display = "none";
+            text.value="null";
+        }
     }
-}
+    function print(el) {
+        const page = document.body.innerHTML;
+        const content = document.getElementById(el).innerHTML;
+        document.body.innerHTML=content;
+        window.print();
+        document.body.innerHTML= page;
+    }
 
 </script>
+@endsection
 {{-- <script>
     function totalPrice(){
         var input1 = (document.getElementById("menu_price").value)*(document.getElementById("quantity").value) ;
