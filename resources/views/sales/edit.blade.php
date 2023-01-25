@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-md-10 mb-3">
                             <div class="form-groupe">
-                                <a href="/payment" class="btn btn-outline-secondary">
+                                <a href="/sale" class="btn btn-outline-secondary">
                                     <i class="fa fa-chevron-left"></i>
                                 </a>
                             </div>

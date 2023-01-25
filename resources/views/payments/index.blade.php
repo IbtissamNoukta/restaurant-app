@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-md-10 mb-3">
                             <div class="form-groupe">
-                                <a href="/payment" class="btn btn-outline-secondary">
+                                <a href="/dashboard" class="btn btn-outline-secondary">
                                     <i class="fa fa-chevron-left"></i>
                                 </a>
                             </div>
@@ -91,6 +91,8 @@
                                                                 <span class="text-muted">01 23 45 67 89</span>
                                                                 <span class="text-muted">Safi Qu XX Rue 100</span>
                                                                 <span class="text-muted">{{ Str::substr($sale->created_at, 11, 19) }}</span>
+                                                                <img src="{{ asset('images/background/RESTAURANT.png') }}" alt="logo"
+                                                                    class="img-fluid" width="50" height="50">
                                                                 <div class="mt-2 d-flex justify-content-center">
                                                                     <a href="{{ route("sale.edit", $sale->id) }}" class="btn btn-sm btn-warning mr-2">
                                                                         <i class="fa fa-edit"></i>

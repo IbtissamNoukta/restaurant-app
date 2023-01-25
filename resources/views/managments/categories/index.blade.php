@@ -4,6 +4,15 @@
     <div class="content">
         <div class="row justify-content-center">
             <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-10 mb-3">
+                        <div class="form-groupe">
+                            <a href="/dashboard" class="btn btn-outline-secondary">
+                                <i class="fa fa-chevron-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -38,21 +47,23 @@
                                             <td>
                                                 {{ $category->title }}
                                             </td>
-                                            <td class="d-flex flex-row justify-content-center align-items-center">
-                                                <a href="{{ route("category.edit",$category->slug) }}" class="btn btn-warning">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <form  id="{{ $category->id }}" action="{{ route("category.destroy",$category->slug) }}" method="post">
-                                                    @csrf
-                                                    @method("DELETE")
-                                                    <button onclick="
-                                                        event.preventDefault();
-                                                        if(confirm('are u sur u wanna delete the {{ $category->title }} category? '))
-                                                        document.getElementById({{ $category->id }}).submit();"
-                                                        class="btn btn-danger">
-                                                            <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </form>
+                                            <td>
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <a href="{{ route("category.edit",$category->slug) }}" class="btn btn-warning me-2">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <form  id="{{ $category->id }}" action="{{ route("category.destroy",$category->slug) }}" method="post">
+                                                        @csrf
+                                                        @method("DELETE")
+                                                        <button onclick="
+                                                            event.preventDefault();
+                                                            if(confirm('are u sur u wanna delete the {{ $category->title }} category? '))
+                                                            document.getElementById({{ $category->id }}).submit();"
+                                                            class="btn btn-danger">
+                                                                <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
                                         @endforeach

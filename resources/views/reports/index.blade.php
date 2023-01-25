@@ -11,7 +11,7 @@
                                 {{-- d-flex flex-row justify-content-center align-items-between border-buttom pd-1 --}}
                                 <div class="d-flex justify-content-between border-bottom border-2 m-1">
                                     <div class="form-groupe">
-                                        <a href="/payment" class="btn btn-outline-secondary m-1">
+                                        <a href="/dashboard" class="btn btn-outline-secondary m-1">
                                             <i class="fa fa-chevron-left"></i>
                                         </a>
                                     </div>
@@ -67,37 +67,25 @@
                                                 </td>
                                                 <td>
                                                     @foreach ($sale->menus()->where("sale_id",$sale->id)->get() as $menu)
-                                                        <div class="col-md-4 mb-2">
-                                                            <div class="h-100">
-                                                                <div class="d-flex
-                                                                    flex-column justify-content-center
-                                                                    align-items-center
-                                                                    list-group-item-action">
-                                                                        <img src="{{ asset('images/menus/'. $menu->image) }}" alt="{{ $menu->title }}"
-                                                                        class="img-fluid rounded" width="50" height="50">
-                                                                        <h5 class="font-weight-bold mt-2">{{ $menu->title }}</h5>
-                                                                        <h5 class="font-weight-bold text-muted mt-2">{{ $menu->price }} DH</h5>
-                                                                </div>
-                                                            </div>
+                                                        <div class="row">
+                                                            {{-- <img src="{{ asset('images/menus/'. $menu->image) }}" alt="{{ $menu->title }}"
+                                                            class="img-fluid rounded" width="50" height="50"> --}}
+                                                            <h5 class="font-weight-bold mt-2">{{ $menu->title }}</h5>
+                                                            <h5 class="font-weight-bold text-muted mt-2">{{ $menu->price }} DH</h5>
                                                         </div>
                                                     @endforeach
                                                 </td>
                                                 <td >
                                                     @foreach ($sale->menus()->where("sale_id",$sale->id)->get() as $menu)
-                                                        <h5 class="font-weight-bold mt-2 mp-3 p-5">{{ $menu->pivot->quantity }}</h5>
+                                                        <h5 class="font-weight-bold mt-2 mp-3 pt-1 pb-4">{{ $menu->pivot->quantity }}</h5>
                                                     @endforeach
                                                 </td>
                                                 <td>
                                                     @foreach ($sale->tables()->where("sale_id", $sale->id)->get() as $table)
-                                                        <div class="col-md-3">
-                                                            <div class="p-2 mb-2 d-flex
-                                                                        flex-column justify-content-center
-                                                                        align-items-center
-                                                                        list-group-item-action">
-                                                                <i class="fa fa-chair fa-3x"></i>
-                                                                <span class="mt-2 text-muted font-weight-bold">{{ $table->name }}</span>
+                                                                {{-- <i class="fa fa-chair fa-3x"></i> --}}
+                                                            <div class="row">
+                                                                <span class="mt-2 font-weight-bold">{{ $table->name }}</span>
                                                             </div>
-                                                        </div>
                                                     @endforeach
                                                 </td>
                                                 <td>
