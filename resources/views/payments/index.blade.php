@@ -179,8 +179,8 @@
                             <option value="" selected disabled>
                                 Choose a payment type
                             </option>
-                            <option value="Cash">Cash</option>
-                            <option value="Card">Credit Card</option>
+                            <option value="cash">Cash</option>
+                            <option value="card">Credit Card</option>
                         </select>
                     </div>
                     <div class="form-group mb-3">

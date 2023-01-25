@@ -23,7 +23,8 @@ class SaleController extends Controller
     public function index()
     {
         //
-        $sales = Sale::orderBy("created_at","DESC")->pagination(10);
+        $sales = Sale::orderBy("created_at","DESC")->paginate(10);
+        //dd($sales);
         return view("sales.index")->with([
             "sales" => $sales
         ]);
