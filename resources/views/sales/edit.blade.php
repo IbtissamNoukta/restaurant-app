@@ -115,8 +115,8 @@
                             <option value="" selected disabled>
                                 Choose a payment type
                             </option>
-                            <option value="Cash" {{ $sale->payment_type === "Cash"? "selected" : "" }}>Cash</option>
-                            <option value="Card" {{ $sale->payment_type === "Card"? "selected" : "" }}>Credit Card</option>
+                            <option value="cash" {{ $sale->payment_type === "cash"? "selected" : "" }}>Cash</option>
+                            <option value="card" {{ $sale->payment_type === "card"? "selected" : "" }}>Credit Card</option>
                         </select>
                     </div>
                     <div class="form-group mb-3">
