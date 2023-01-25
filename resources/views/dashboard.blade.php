@@ -1,17 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
+        <div class="row">
+                <a href="/category" class="col-sm-4 d-flex flex-column align-items-center justify-items-center">
+                    <i class="fa fa-cog fa-5x text-danger"></i>
+                    Manage
+                </a>
+                <a href="/payment" class="col-sm-4 d-flex flex-column align-items-center justify-items-center">
+                    <i class="fa fa-shopping-bag fa-5x text-primary"></i>
+                    Sales
+                </a>
+                <a href="/report" class="col-sm-4 d-flex flex-column align-items-center justify-items-center">
+                    <i class="fa fa-clipboard-list fa-5x text-success"></i>
+                    Reports
+                </a>
         </div>
-    </div>
+    </x-slot>
 </x-app-layout>
