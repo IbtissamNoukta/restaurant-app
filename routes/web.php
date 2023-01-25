@@ -8,7 +8,7 @@ use App\Http\Controllers\ServantController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\PaymentController;
-
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +42,8 @@ Route::resource('servant', ServantController::class);
 Route::resource('menu', MenuController::class);
 Route::resource('sale', SaleController::class);
 Route::get('payment', [PaymentController::class, 'index']);
-
+Route::get('report', [ReportController::class, 'index']);
+Route::post('report/generate', [ReportController::class, 'generate'])->name("report.generate");
+Route::post('report/export', [ReportController::class, 'export'])->name("report.export");
 
 require __DIR__.'/auth.php';
