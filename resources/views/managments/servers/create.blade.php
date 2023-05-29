@@ -12,7 +12,7 @@
                             </div>
                             <div class="col-md-8">
                                     <h3 class="text-secondary border-bottom border-2 mb-3">
-                                        <i class="fa-sharp fa-solid fa-plus"> Add a Table</i>
+                                        <i class="fa-sharp fa-solid fa-plus"> Add a Servant</i>
                                     </h3>
                                 <form action="{{ route("servant.store") }}" method="post">
                                     @csrf
