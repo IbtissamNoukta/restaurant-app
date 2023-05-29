@@ -1,4 +1,6 @@
 # restaurant-app
+
+ restaurant-app using Laravel 9.47.0 and blade (Bootstrap)
  
  **Home Page :**
  
